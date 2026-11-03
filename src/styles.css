@@ -1,0 +1,379 @@
+/* Landing achadinhos. Mobile-first; breakpoints 768 e 1024. Só tema claro. */
+
+/* Fredoka (títulos, números) e Nunito (texto, botões): variáveis, subset latino, locais (identidade laranja, 2026-11-02).
+   Famílias de fallback (Arial/Liberation Sans ajustada) reduzem o salto no swap. Calibração com fontTools sobre
+   texto pt-BR da página (largura média por em) e métricas verticais (USE_TYPO_METRICS):
+   Fredoka 700 / Arial Bold = 0,941; Nunito 600 / Arial = 1,017; Nunito 700-800 / Arial Bold = 0,967-0,988.
+   ascent/descent: Fredoka 0,974 / 0,236; Nunito 1,011 / 0,353. Os overrides são divididos por size-adjust. */
+@font-face {
+  font-family: "Fredoka";
+  src: url("../assets/fonts/fredoka-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("../assets/fonts/nunito-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Fredoka Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Liberation Sans Bold");
+  font-weight: 300 700;
+  size-adjust: 94.1%;
+  ascent-override: 103.5%;
+  descent-override: 25.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Nunito Fallback";
+  src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+  font-weight: 200 649;
+  size-adjust: 101.7%;
+  ascent-override: 99.4%;
+  descent-override: 34.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Nunito Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Liberation Sans Bold");
+  font-weight: 650 1000;
+  size-adjust: 97.7%;
+  ascent-override: 103.5%;
+  descent-override: 36.1%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Cores (nomes --c-* são lidos pelo scripts/check.mjs). Guia: docs/produto/identidade-visual-laranja.png */
+  --c-bg: #FFFFFF;        /* Superfície: fundo geral da página */
+  --c-surface: #FFFFFF;   /* cards, barra fixa, banner, balão */
+  --c-surface-2: #FFF4E8; /* Fundo: topo e seções alternadas */
+  --c-surface-3: #FCE9D6; /* badge da prévia, active do summary */
+  --c-border: #9C7F6C; /* borda de componente (>= 3:1 sobre bg, surface e surface-2) */
+  --c-divider: #F1DCC8; /* Borda do guia: divisor e contorno decorativo de card */
+  --c-text: #2B1408;
+  --c-text-muted: #6B5446;
+  --c-focus: #2B1408;
+  /* Marca: áreas grandes, ícones e números grandes. Nunca em texto pequeno (3,5:1 sobre branco). */
+  --c-brand: #E85D10;
+  --c-on-brand: #FFFFFF; /* só texto grande (>= 18,66 px bold): 3,5:1 */
+  /* Destaque: selos/etiquetas, sempre com texto escuro (12,3:1) */
+  --c-highlight: #FFD45C;
+  --c-on-highlight: #2B1408;
+  /* Ação: reservada aos botões de ação e links. O build sobrescreve accent/on-accent por nicho (content.corDestaque). */
+  --c-accent: #C2410C;
+  --c-on-accent: #FFFFFF;
+  --c-accent-hover: color-mix(in srgb, var(--c-accent) 88%, #000);
+  --c-accent-active: color-mix(in srgb, var(--c-accent) 77%, #000);
+  --c-link: var(--c-accent);
+
+  /* Espaçamento (escala de 8) */
+  --s-0: 4px; --s-1: 8px; --s-2: 16px; --s-3: 24px; --s-4: 32px; --s-5: 48px; --s-6: 64px; --s-7: 96px;
+  --gutter: 16px;
+  --radius: 16px;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(43 20 8 / .06), 0 2px 8px rgb(43 20 8 / .06);
+  --shadow-btn: 0 2px 0 rgb(43 20 8 / .12), 0 4px 12px rgb(194 65 12 / .22);
+  --shadow-2: 0 -4px 16px rgb(43 20 8 / .10);
+
+  /* Tipografia: fluida entre 360 e 1280 px, valores do guia (celular / desktop) */
+  --font-display: "Fredoka", "Fredoka Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: "Nunito", "Nunito Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fs-h1: clamp(2rem, 1.22rem + 3.48vw, 4rem); /* 32 em 360, 64 em 1280 (guia: 40 no celular; 32 para h1 + CTA caberem na dobra com o banner) */
+  --fs-h2: clamp(2rem, 1.7065rem + 1.304vw, 2.75rem);   /* 32 / 44 */
+  --fs-h3: clamp(1.375rem, 1.228rem + 0.652vw, 1.75rem); /* 22 / 28 */
+  --fs-lead: clamp(1.125rem, 1.076rem + 0.217vw, 1.25rem); /* 18 / 20 */
+  --fs-body: clamp(1rem, 0.9755rem + 0.109vw, 1.0625rem); /* 16 / 17 */
+  --fs-small: 0.875rem; /* legenda 14 */
+  --fs-btn: 1.125rem;   /* botão 18 */
+  --fs-tag: 0.875rem;   /* etiqueta 14, maiúsculas */
+
+  --btn-h: 52px;
+  --sticky-h: 68px; /* barra fixa: 52 + padding 8+8 */
+  /* Folga para o foco por teclado não ficar sob o dock (WCAG 2.4.11). Com o banner aberto a barra some e
+     o banner ocupa a altura medida em 320/360 e 768 (Chrome, 2026-11-02); valor = altura + folga. */
+  --dock-h: 92px;
+}
+html:has(#consent:not([hidden])) { --dock-h: 208px; }
+@media (min-width: 768px) {
+  html:has(#consent:not([hidden])) { --dock-h: 120px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-bottom: var(--dock-h);
+}
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font: 600 var(--fs-body)/1.6 var(--font);
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+a { color: var(--c-link); text-underline-offset: 3px; }
+:is(a, button, summary):focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 3px;
+  scroll-margin-bottom: var(--dock-h);
+}
+main:focus { outline: none; } /* alvo de foco programático (tabindex=-1), fora da ordem do Tab */
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* A/B: o script do head define data-h / data-c no <html>. */
+.ab { display: none; }
+html[data-h="1"] .ab[data-h="1"],
+html[data-h="2"] .ab[data-h="2"],
+html[data-h="3"] .ab[data-h="3"],
+html[data-c="1"] .ab[data-c="1"],
+html[data-c="2"] .ab[data-c="2"],
+html[data-c="3"] .ab[data-c="3"] { display: inline; }
+
+.ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ico--btn { width: 20px; height: 20px; }
+.ico--md { width: 20px; height: 20px; }
+.ico--sm { width: 16px; height: 16px; }
+
+/* Estrutura */
+.wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+}
+.top { padding-top: var(--s-2); background: var(--c-surface-2); }
+.brand { display: flex; align-items: center; gap: calc(var(--s-1) + var(--s-0)); font: 600 1.375rem/1.2 var(--font-display); max-width: 65ch; }
+.brand__logo { display: block; flex: none; width: 40px; height: 40px; border-radius: var(--radius); }
+.sec { padding-block: var(--s-5); }
+.sec--alt { background: var(--c-surface-2); }
+
+.h1, .h2, .h3 { font-family: var(--font-display); color: var(--c-text); }
+.h1 { font-size: var(--fs-h1); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; text-wrap: balance; }
+.h2 { font-size: var(--fs-h2); font-weight: 700; line-height: 1.1; text-wrap: balance; margin-bottom: var(--s-3); }
+.h3 { font-size: var(--fs-h3); font-weight: 600; line-height: 1.2; }
+.lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--c-text-muted); max-width: 65ch; }
+.micro { font-size: var(--fs-small); font-weight: 700; line-height: 1.5; color: var(--c-text-muted); max-width: 65ch; text-wrap: balance; }
+/* Etiqueta sobre o título (Destaque: amarelo com texto escuro) */
+.tag {
+  display: inline-block; align-self: flex-start;
+  background: var(--c-highlight); color: var(--c-on-highlight);
+  border-radius: var(--radius-pill); padding: 4px 12px;
+  font-size: var(--fs-tag); font-weight: 800; line-height: 1.5; letter-spacing: 2px; text-transform: uppercase;
+}
+/* Abaixo de 360 px (ex.: 320x568) a etiqueta sai e o hero aperta, para h1 + CTA caberem na dobra com o banner. */
+@media (max-width: 359px) {
+  :root { --fs-h1: 1.875rem; }
+  .tag { display: none; }
+  .hero__in { gap: 12px; }
+}
+
+/* Hero: sem min-height; o h1 é o LCP */
+.hero { padding-top: var(--s-2); padding-bottom: var(--s-5); background: var(--c-surface-2); }
+.hero__in { display: flex; flex-direction: column; align-items: stretch; gap: var(--s-2); }
+.hero .lead { margin-bottom: var(--s-1); }
+.hero .micro { margin-top: -4px; }
+
+/* Botão CTA */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-1);
+  min-height: var(--btn-h); padding: 12px var(--s-3);
+  background: var(--c-accent); color: var(--c-on-accent);
+  border-radius: var(--radius-pill); box-shadow: var(--shadow-btn);
+  font: 800 var(--fs-btn)/1.2 var(--font); text-align: center; text-decoration: none;
+  text-wrap: balance;
+  transition: background-color .15s, transform .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:visited { color: var(--c-on-accent); }
+.btn--lg { min-height: 56px; }
+@media (hover: hover) {
+  .btn:hover { background: var(--c-accent-hover); transform: translateY(-1px); }
+}
+.btn:active { background: var(--c-accent-active); transform: translateY(0) scale(.98); transition-duration: .1s; }
+
+/* Benefícios */
+.cards { display: grid; gap: var(--s-2); }
+.card {
+  display: flex; gap: var(--s-2); align-items: flex-start;
+  background: var(--c-surface); border: 1px solid var(--c-divider); border-radius: var(--radius);
+  padding: var(--s-2); box-shadow: var(--shadow-1);
+}
+.card__ico {
+  display: grid; place-items: center; width: 40px; height: 40px; flex: none;
+  background: var(--c-surface-2); border-radius: 12px; color: var(--c-brand);
+}
+.card__txt { margin-top: var(--s-0); color: var(--c-text-muted); max-width: 65ch; }
+
+/* Como funciona */
+.how { display: grid; gap: var(--s-4); }
+.steps { display: grid; gap: var(--s-3); counter-reset: step; max-width: 65ch; }
+.step { display: flex; gap: var(--s-2); align-items: flex-start; counter-increment: step; }
+.step::before {
+  content: counter(step);
+  display: grid; place-items: center; width: 40px; height: 40px; flex: none;
+  border-radius: 50%; background: var(--c-brand); color: var(--c-on-brand);
+  font: 700 1.375rem/1 var(--font-display); /* número grande (22 px bold): 3,5:1 basta */
+}
+.step__txt { margin-top: var(--s-0); color: var(--c-text-muted); }
+.preview { max-width: 28rem; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--c-surface-3); color: var(--c-text);
+  border-radius: var(--radius-pill); padding: 4px 12px; font-size: var(--fs-small); font-weight: 700; line-height: 1.5;
+  margin-bottom: var(--s-1);
+}
+.bubble {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--c-surface); color: var(--c-text); border: 1px solid var(--c-divider); box-shadow: var(--shadow-1);
+  border-radius: var(--radius); border-top-left-radius: 4px; padding: var(--s-2);
+}
+/* Thumb 64x64: imagem do content (img.preview; no pet, o logo do grupo) ou caixa neutra sem texto. */
+.bubble__thumb { display: block; width: 64px; height: 64px; flex: none; border-radius: 12px; background: var(--c-surface-2); object-fit: cover; }
+.bubble__txt { white-space: pre-line; min-width: 0; }
+.preview__cap { margin-top: var(--s-1); font-size: var(--fs-small); font-weight: 700; line-height: 1.5; color: var(--c-text-muted); text-wrap: balance; }
+
+/* Confiança */
+.trust { display: grid; gap: var(--s-4); }
+.checks { display: grid; gap: var(--s-2); }
+.check { display: flex; gap: 12px; align-items: flex-start; font-weight: 700; max-width: 65ch; }
+.check__ico {
+  display: grid; place-items: center; width: 28px; height: 28px; flex: none;
+  border-radius: 50%; background: var(--c-surface-2); color: var(--c-brand);
+}
+.faq { display: grid; gap: var(--s-1); align-content: start; }
+.faq details { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); }
+.faq summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+  min-height: 56px; padding: 12px var(--s-2);
+  border-radius: var(--radius); cursor: pointer; font-weight: 700; line-height: 1.35;
+  list-style: none; transition: background-color .15s;
+}
+.faq summary::-webkit-details-marker { display: none; }
+@media (hover: hover) { .faq summary:hover { background: var(--c-surface-2); } }
+.faq summary:active { background: var(--c-surface-3); }
+.chev { transition: transform .2s; }
+.faq details[open] .chev { transform: rotate(180deg); }
+.faq details > p { padding: 0 var(--s-2) var(--s-2); color: var(--c-text-muted); max-width: 65ch; }
+
+/* CTA final */
+.final__in { display: flex; flex-direction: column; gap: var(--s-2); align-items: stretch; }
+.final .h2 { margin-bottom: var(--s-1); max-width: 30ch; }
+
+/* Rodapé: reserva sempre o espaço da barra no mobile (sem salto de layout) */
+.foot {
+  padding-block: var(--s-4) calc(var(--s-4) + var(--sticky-h) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--c-divider);
+  font-size: var(--fs-small); font-weight: 700; line-height: 1.5; color: var(--c-text-muted);
+}
+.foot__in { display: grid; gap: var(--s-2); }
+.foot__aviso { max-width: 65ch; }
+.foot__links { display: flex; flex-wrap: wrap; gap: var(--s-0) var(--s-3); }
+.foot__link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--c-link); text-decoration: underline; text-underline-offset: 3px;
+}
+.foot__btn { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.foot__btn[hidden] { display: none; }
+body:has(#consent:not([hidden])) .foot {
+  padding-bottom: calc(var(--s-4) + var(--sticky-h) + 160px + env(safe-area-inset-bottom));
+}
+
+/* Dock: barra fixa e banner */
+.dock {
+  position: fixed; inset: auto 0 0; z-index: 50;
+  display: flex; flex-direction: column;
+  pointer-events: none;
+}
+.dock > * { pointer-events: auto; }
+.sticky {
+  background: var(--c-surface); box-shadow: var(--shadow-2);
+  padding: 8px max(16px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  transition: transform .2s, visibility 0s;
+}
+.sticky .btn { display: flex; width: 100%; }
+/* Oculta por padrão (sem JS fica assim); ui.js remove inert e aria-hidden para mostrar */
+.sticky[inert], .sticky[aria-hidden="true"] {
+  transform: translateY(100%); visibility: hidden; transition: transform .2s, visibility 0s .2s;
+}
+/* O banner se sobrepõe ao fundo do dock (position: absolute) em vez de entrar no fluxo dele: abrir o banner
+   não muda a altura nem o topo do .dock, então não há layout shift (CLS). A barra fica oculta enquanto ele está aberto. */
+.consent {
+  position: absolute; inset: auto 0 0;
+  background: var(--c-surface); box-shadow: var(--shadow-2);
+  padding: var(--s-2) max(16px, env(safe-area-inset-right)) calc(var(--s-2) + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  font-size: var(--fs-small); line-height: 1.5;
+}
+.consent[hidden] { display: none; }
+.consent:not([hidden]) { animation: dock-in .2s ease-out; }
+@keyframes dock-in { from { transform: translateY(100%); } to { transform: none; } }
+.consent__in { max-width: 1080px; margin-inline: auto; display: grid; gap: 12px; }
+.consent__txt { max-width: 65ch; }
+.consent__txt a { color: var(--c-link); font-weight: 700; }
+.consent__btns { display: flex; gap: var(--s-1); }
+/* Aceitar e Recusar com o MESMO estilo (contornado neutro): nenhum dos dois é empurrado; o laranja de ação é só do CTA. */
+.cbtn {
+  flex: 1; min-height: 48px; padding: 8px var(--s-2); border-radius: var(--radius-pill);
+  font: 800 var(--fs-small)/1.2 var(--font); cursor: pointer;
+  background: var(--c-surface); color: var(--c-text);
+  border: 2px solid var(--c-text); transition: background-color .15s, transform .15s;
+}
+@media (hover: hover) {
+  .cbtn:hover { background: var(--c-surface-2); }
+}
+.cbtn:active { background: var(--c-surface-3); transform: scale(.98); transition-duration: .1s; }
+
+/* >= 768: grids, barra fixa some, hero centralizado */
+@media (min-width: 768px) {
+  :root { --gutter: 24px; }
+  .sec { padding-block: var(--s-7); }
+  .top { padding-top: var(--s-3); }
+  .hero { padding-top: var(--s-5); padding-bottom: var(--s-7); }
+  .hero .tag { align-self: center; }
+  .hero__in, .final__in { align-items: center; text-align: center; margin-inline: auto; }
+  .hero__in { max-width: 44rem; gap: var(--s-3); }
+  .hero .lead, .hero .micro, .final .h2 { margin-inline: auto; }
+  .btn--lg { min-width: 320px; padding-inline: var(--s-4); }
+  .cards { grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+  .card { flex-direction: column; padding: var(--s-3); }
+  .steps { grid-template-columns: repeat(3, 1fr); max-width: none; gap: var(--s-3); }
+  .step { flex-direction: column; }
+  .preview { justify-self: center; }
+  .sticky { display: none; }
+  .foot { padding-block: var(--s-4); }
+  body:has(#consent:not([hidden])) .foot { padding-bottom: calc(var(--s-4) + 120px); }
+  .consent__in { grid-template-columns: 1fr auto; align-items: center; gap: var(--s-3); }
+  .consent__btns { min-width: 320px; }
+}
+@media (min-width: 1024px) {
+  .how { grid-template-columns: 1fr 1fr; align-items: start; gap: var(--s-6); }
+  .steps { grid-template-columns: 1fr; }
+  .step { flex-direction: row; }
+  .trust { grid-template-columns: 1fr 1fr; gap: var(--s-6); align-items: start; }
+  .foot__in { justify-items: center; text-align: center; }
+  .foot__links { justify-content: center; }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .hero__in, .cards, .steps, .trust, .how, .final__in { max-width: 36rem; margin-inline: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
+  .btn:hover, .btn:active, .cbtn:active { transform: none; }
+  .consent:not([hidden]) { animation: none; }
+}

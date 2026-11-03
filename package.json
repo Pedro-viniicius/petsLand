@@ -1,0 +1,18 @@
+{
+  "name": "achadinhos-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing pages estáticas de grupos de WhatsApp de achadinhos, uma por nicho.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test",
+    "check": "node scripts/check.mjs",
+    "browser": "node scripts/browser-check.mjs",
+    "shots": "node scripts/shots.mjs",
+    "og": "node scripts/og.mjs",
+    "serve": "node scripts/serve.mjs",
+    "verify": "node build.mjs && node --test && node scripts/check.mjs && node scripts/browser-check.mjs"
+  }
+}

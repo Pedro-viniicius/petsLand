@@ -1,0 +1,6 @@
+node_modules/
+.shots/
+.qa-tmp/
+
+# memória dos agentes (local, não versionar)
+.claude/agent-memory/

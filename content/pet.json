@@ -1,0 +1,144 @@
+{
+  "nicho": "pet",
+  "siteUrl": "https://white-hornet-181851.hostingersite.com",
+  "nomeGrupo": "Garimpo Pet",
+  "logo": {
+    "src": "pet/logo.webp",
+    "alt": "",
+    "width": 40,
+    "height": 40,
+    "favicon": "pet/favicon.png",
+    "appleTouchIcon": "pet/apple-touch-icon.png"
+  },
+  "convite": "https://chat.whatsapp.com/CeP47Ubtjan5Ncud6LzPo7",
+  "politicaPrivacidade": "[URL DA POLÍTICA DE PRIVACIDADE]",
+  "corDestaque": {
+    "accent": "#C2410C",
+    "onAccent": "#FFFFFF"
+  },
+  "meta": {
+    "title": "Garimpo Pet | Achadinhos pet no WhatsApp",
+    "description": "Grupo gratuito com ofertas selecionadas para o seu pet, direto no WhatsApp. Você compra na loja, sem senha nem PIX."
+  },
+  "ab": {
+    "headlines": [
+      "Receba achadinhos pet selecionados direto no seu WhatsApp",
+      "Ofertas para seu pet, selecionadas e direto no WhatsApp",
+      "Pare de caçar ofertas pet: a gente garimpa e avisa no WhatsApp"
+    ],
+    "ctas": [
+      "Entrar no grupo grátis",
+      "Receber ofertas no WhatsApp",
+      "Quero receber achadinhos pet"
+    ],
+    "padrao": {
+      "h": 1,
+      "c": 1
+    }
+  },
+  "subtitulo": "Ofertas de ração, brinquedos e acessórios garimpadas pra você. Você compra direto na loja.",
+  "microcopy": "Grátis • Não\u00a0pedimos\u00a0senha\u00a0nem\u00a0PIX • Saia\u00a0quando\u00a0quiser",
+  "beneficios": [
+    {
+      "titulo": "Menos tempo procurando",
+      "texto": "A gente separa as ofertas pet. Você só abre e confere.",
+      "icone": "relogio"
+    },
+    {
+      "titulo": "Ofertas selecionadas",
+      "texto": "Ração, petiscos, brinquedos, caminhas e acessórios, com link direto da loja.",
+      "icone": "etiqueta"
+    },
+    {
+      "titulo": "Tudo no WhatsApp",
+      "texto": "Sem app novo e sem cadastro. As ofertas chegam onde você já conversa.",
+      "icone": "balao"
+    }
+  ],
+  "passos": [
+    {
+      "titulo": "Toque no botão",
+      "texto": "O convite abre no seu WhatsApp."
+    },
+    {
+      "titulo": "Entre no grupo",
+      "texto": "É grátis e você sai quando quiser."
+    },
+    {
+      "titulo": "Receba as ofertas",
+      "texto": "Veja os achados e compre direto na loja."
+    }
+  ],
+  "exemploOferta": {
+    "ativo": true,
+    "texto": "Achadinho: Caminha pet redonda, tamanho\u00a0M\nR$ 59,90 na loja\nPreços e estoque mudam. Confirme na loja."
+  },
+  "confianca": {
+    "pontos": [
+      "O grupo é gratuito.",
+      "Você compra direto nas lojas ([LOJAS]), não com a gente.",
+      "Nunca pedimos senha nem PIX."
+    ],
+    "detalhes": [
+      {
+        "pergunta": "Quem cuida do pagamento, da entrega e da garantia?",
+        "resposta": "O vendedor ou a plataforma onde você compra. Para dúvidas sobre o pedido, fale com a loja."
+      },
+      {
+        "pergunta": "Os links são de afiliados?",
+        "resposta": "Alguns podem ser. Se você comprar por eles, podemos receber uma comissão, sem custo extra para você."
+      },
+      {
+        "pergunta": "Preço e estoque mudam?",
+        "resposta": "Sim, a qualquer momento. Confirme o preço, o frete e o estoque na loja antes de comprar."
+      },
+      {
+        "pergunta": "Posso sair do grupo?",
+        "resposta": "Pode, quando quiser, pelas opções do próprio WhatsApp."
+      }
+    ]
+  },
+  "provaSocial": null,
+  "imagens": [
+    {
+      "slot": "hero",
+      "src": "[IMAGEM: cachorro e gato juntos, luz natural, fundo neutro, 4:3, até 60 KB AVIF/WebP]",
+      "alt": "",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "slot": "preview",
+      "src": "pet/logo.webp",
+      "alt": "",
+      "width": 64,
+      "height": 64
+    }
+  ],
+  "analytics": {
+    "ga4": "[G-XXXXXXXXXX]",
+    "clarity": "[CLARITY_ID]"
+  },
+  "ui": {
+    "heroEtiqueta": "Grupo gratuito no WhatsApp",
+    "beneficiosTitulo": "Por que entrar",
+    "passosTitulo": "Como funciona",
+    "confiancaTitulo": "O que você precisa saber",
+    "ctaFinalTitulo": "Pronto para receber achadinhos pet no WhatsApp?",
+    "previaLegenda": "Exemplo ilustrativo de como as ofertas aparecem. Não é uma oferta real.",
+    "previaBadge": "Exemplo ilustrativo",
+    "linkPolitica": "Política de privacidade",
+    "preferenciasCookies": "Preferências de cookies",
+    "ariaAtalho": "Atalho para entrar no grupo",
+    "ariaCookies": "Preferências de cookies",
+    "banner": {
+      "texto": "Usamos Google Analytics e Microsoft Clarity (inclui gravação anônima da navegação) para entender como a página é usada, só se você aceitar.",
+      "aceitar": "Aceitar",
+      "recusar": "Recusar",
+      "salvo": "Preferência salva."
+    }
+  },
+  "rodape": {
+    "avisoAfiliados": "Alguns links deste grupo são de afiliados: podemos receber comissão se você comprar, sem custo extra para você. Garimpo Pet é um grupo independente; nomes de lojas e marcas pertencem aos seus donos. Preços e estoque podem mudar: confirme na loja."
+  }
+}

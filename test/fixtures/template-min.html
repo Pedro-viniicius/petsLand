@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR" data-h="{{abH}}" data-c="{{abC}}">
+<head>
+<meta http-equiv="Content-Security-Policy" content="{{csp}}">
+<title>{{meta.title}}</title>
+<meta property="og:image" content="{{ogImage}}">
+{{fontPreload}}
+<link rel="stylesheet" href="{{assets}}/styles.css">
+{{accentStyle}}
+<script>{{abInline}}</script>
+</head>
+<body data-niche="{{nicho}}">
+<h1>{{#each ab.headlines}}<span class="ab" data-h="{{@index1}}">{{this}}</span>{{/each}}</h1>
+<a data-cta="hero" href="{{convite}}">{{#each ab.ctas}}<span data-c="{{@index1}}">{{this}}</span>{{/each}}</a>
+{{#each beneficios}}<p>{{this.titulo}}{{#if this.ico.relogio}}[relogio]{{else}}[outro]{{/if}}</p>{{/each}}
+{{#if provaSocial}}<section id="prova">{{provaSocial.fonte}}</section>{{/if}}
+<script type="application/json" id="cfg">{{cfgJson}}</script>
+</body>
+</html>
